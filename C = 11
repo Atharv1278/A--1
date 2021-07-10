@@ -1,0 +1,34 @@
+var Ship, Ship_running, edges;
+var SeaImage;
+
+
+function preload(){
+  Ship_running = loadAnimation("ship-1.png","ship-2.png","ship-3.png","ship-4.png");
+  seaImage = loadImage("sea.png")
+}
+
+function setup(){
+  createCanvas(400,400);
+  
+  var ship = createSprite(200,160,20,50);
+  ship.addAnimation("running", Ship_running);
+  edges = createEdgeSprites();
+
+ var sea=createSprite(350,180,600,10);
+  sea.addAnimation("sea.png",seaImage);
+  sea.velocityX=-3;
+}
+
+function draw() {
+  background("blue");
+ 
+  
+  console.log(sea.y)
+
+  if(sea.x<0){
+   sea.x=width/2
+  }
+
+  ship.collide(sea);
+  drawSprites();
+}
